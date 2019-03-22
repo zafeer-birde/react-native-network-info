@@ -7,6 +7,10 @@ const NetworkInfo = {
   async getSSID() {
     return await RNNetworkInfo.getSSID();
   },
+  
+  async getFrequency() {
+    return await RNNetworkInfo.getFrequency();
+  },
 
   async getBSSID() {
     return await RNNetworkInfo.getBSSID();
