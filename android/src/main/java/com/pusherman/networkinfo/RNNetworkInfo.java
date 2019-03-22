@@ -67,6 +67,26 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
             }
         }).start();
     }
+    
+    @ReactMethod
+    public void getFrequency(final Promise promise) throws Exception {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    WifiInfo info = wifi.getConnectionInfo();
+
+                    // This value should be wrapped in double quotes, so we need to unwrap it.
+                    // https://stackoverflow.com/a/34848930/5732760
+                    int frequency = info.getFrequency();
+                    promise.resolve(frequency);
+                } catch (Exception e) {
+                    promise.resolve(null);
+                }
+
+            }
+        }).start();
+    }
+    
 
     @ReactMethod
     public void getBSSID(final Promise promise) throws Exception {
